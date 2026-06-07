@@ -1,0 +1,76 @@
+JSONPlaceholder curl Practice
+
+========================================
+1. GET all users (formatted)
+========================================
+
+Command:
+curl https://jsonplaceholder.typicode.com/users | python -m json.tool
+
+Result:
+[
+    {
+        "id": 1,
+        "name": "Leanne Graham",
+        ...
+    },
+    {
+        "id": 2,
+        "name": "Ervin Howell",
+        ...
+    }
+    ...
+]
+
+========================================
+2. GET user 3's todos
+========================================
+
+Command:
+curl "https://jsonplaceholder.typicode.com/todos?userId=3" | python -m json.tool
+
+Result:
+[
+    {
+        "userId": 3,
+        "id": 41,
+        "title": "aliquid amet impedit consequatur aspernatur placeat eaque fugiat suscipit",
+        "completed": false
+    },
+    ...
+]
+
+========================================
+3. POST a new post
+========================================
+
+Command:
+curl -X POST https://jsonplaceholder.typicode.com/posts \
+-H "Content-Type: application/json" \
+-d '{
+    "title": "My API Practice Post",
+    "body": "Created with curl for API practice.",
+    "userId": 1
+}'
+
+Result:
+{
+    "title": "My API Practice Post",
+    "body": "Created with curl for API practice.",
+    "userId": 1,
+    "id": 101
+}
+
+========================================
+4. Show only response headers for /posts/1
+========================================
+
+Command:
+curl -I https://jsonplaceholder.typicode.com/posts/1
+
+Result:
+HTTP/2 200
+content-type: application/json; charset=utf-8
+content-length: 292
+cache-control: max-age=43200
+...
